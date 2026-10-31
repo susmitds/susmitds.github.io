@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="A short explanation of TIME, a behavioral alignment framework for context-triggered explicit reasoning in language models.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="TIME — Susmit Das">
+  <meta property="og:description" content="Explicit reasoning as a context-triggered control policy rather than a fixed mode.">
+  <title>TIME — Susmit Das</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="shell head-inner">
+    <a class="brand" href="index.html">Susmit Das</a>
+    <nav aria-label="Main navigation"><a href="index.html#work">Work</a><a href="index.html#about">About</a><a href="cv.pdf">CV</a></nav>
+  </div>
+</header>
+<main class="shell">
+  <a class="back" href="index.html#work">← Back to selected work</a>
+  <div class="project-hero" style="margin-top:32px">
+    <div class="kicker">Findings of ACL 2026 · sole-authored</div>
+    <h1>TIME</h1>
+    <p class="sub" style="font-size:18px;margin-top:8px">Temporally Intelligent Meta-reasoning Engine for Context-Triggered Explicit Reasoning</p>
+    <div class="links">
+      <a href="https://aclanthology.org/2026.findings-acl.1936/">Paper ↗</a>
+      <a href="https://github.com/The-Coherence-Initiative/TIME">Code &amp; training data ↗</a>
+      <a href="https://github.com/The-Coherence-Initiative/TIMEBench">TIMEBench ↗</a>
+    </div>
+    <p class="one-line">The core idea: explicit reasoning does not have to be a global “thinking mode.” It can be learned as a control policy that appears when the conversational context makes a re-check, inference, or re-anchoring useful.</p>
+  </div>
+
+  <section aria-labelledby="problem-heading">
+    <h2 id="problem-heading">Why treat reasoning as a policy?</h2>
+    <div class="split">
+      <div class="callout"><h3>Fixed modes are blunt</h3><p>Reasoning models often either emit a long front-loaded trace or suppress explicit reasoning entirely. That spends tokens even when little reasoning is needed and makes it difficult to re-enter a reasoning phase once the answer is underway.</p></div>
+      <div class="callout"><h3>Context changes inside a conversation</h3><p>Deadlines move, assumptions go stale, users return after long gaps, and new information can invalidate what was reasonable a few turns earlier. TIME uses temporality as a controlled probe for that latent state change.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="framework-heading">
+    <h2 id="framework-heading">What TIME changes</h2>
+    <div class="prose"><p>TIME adds three lightweight primitives to dialogue. The point is not to make timestamps the task; the timestamps and silent time shifts create structured cues that can require the model to reconsider context.</p></div>
+    <div class="primitive-grid">
+      <div class="primitive"><code>&lt;time&gt;</code><p>Optional ISO-8601 timestamps make elapsed time and delayed returns visible in the conversation.</p></div>
+      <div class="primitive"><code>&lt;think&gt;</code><p>Short reasoning bursts can appear anywhere in a response, including more than once, instead of only as one front-loaded block.</p></div>
+      <div class="primitive"><code>tick</code><p>A turn containing only time metadata represents silent passage of time without inventing additional user content.</p></div>
+    </div>
+    <div class="prose" style="margin-top:22px"><p>I trained Qwen3 models from 4B to 32B with a four-phase supervised curriculum. The final stage is deliberately small and maximally diverse: the recurring invariant is the reasoning policy itself rather than topic, style, or formatting.</p></div>
+  </section>
+
+  <section aria-labelledby="bench-heading">
+    <h2 id="bench-heading">TIMEBench</h2>
+    <div class="prose"><p>TIMEBench is a diagnostic benchmark for reasoning from temporal cues and latent contextual change, not a temporal fact-recall benchmark. It contains 77 scenarios across seven categories, with 10 trials per scenario for each model.</p></div>
+    <div class="stat-grid">
+      <div class="stat"><strong>77</strong><span>scenario-level diagnostics</span></div>
+      <div class="stat"><strong>770</strong><span>evaluation runs per model</span></div>
+      <div class="stat"><strong>4B–32B</strong><span>Qwen3 scales evaluated</span></div>
+      <div class="stat"><strong>7</strong><span>diagnostic categories</span></div>
+    </div>
+    <div class="prose" style="margin-top:22px"><p>The categories probe chronological retrospection, invalid-time detection, temporal adaptivity, temporal contextual awareness, temporal-flow anomalies, time-gap awareness, and timezone sensitivity.</p></div>
+  </section>
+
+  <section aria-labelledby="results-heading">
+    <h2 id="results-heading">What changed after alignment?</h2>
+    <div class="prose"><p>Across all four model sizes, TIME outperformed the corresponding Qwen3 thinking and no-thinking baselines on TIMEBench. The behavioral shift is at least as important as the score: explicit reasoning becomes shorter, more selective, and usually appears in the middle of the response rather than only at the beginning.</p></div>
+    <div class="stat-grid">
+      <div class="stat"><strong>64.81</strong><span>TIME-32B TIMEBench score</span></div>
+      <div class="stat"><strong>37.40</strong><span>Qwen3-32B thinking-mode score</span></div>
+      <div class="stat"><strong>84</strong><span>mean TIME-32B reasoning tokens per run</span></div>
+      <div class="stat"><strong>911</strong><span>mean Qwen3-32B thinking tokens per run</span></div>
+    </div>
+    <div class="result-line"><strong>The point is not simply “less chain of thought.”</strong> TIME is trying to change the policy governing <em>when</em> explicit reasoning appears and whether it can be re-triggered as context evolves.</div>
+  </section>
+</main>
+<footer class="site-foot"><div class="shell foot-inner"><span>Susmit Das</span><span><a href="mailto:susmitdas@alum.iisc.ac.in">susmitdas@alum.iisc.ac.in</a></span></div></footer>
+</body>
+</html>

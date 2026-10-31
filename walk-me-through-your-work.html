@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="A short explanation of Walk Me Through Your Work, a position paper on output-level auditability for LLM explanations.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Walk Me Through Your Work — Susmit Das">
+  <meta property="og:description" content="Explainability for reliance as auditability of the public output.">
+  <title>Walk Me Through Your Work — Susmit Das</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="shell head-inner">
+    <a class="brand" href="index.html">Susmit Das</a>
+    <nav aria-label="Main navigation"><a href="index.html#work">Work</a><a href="index.html#about">About</a><a href="cv.pdf">CV</a></nav>
+  </div>
+</header>
+<main class="shell">
+  <a class="back" href="index.html#work">← Back to selected work</a>
+  <div class="project-hero" style="margin-top:32px">
+    <div class="kicker">Position paper · submitted to ACM FAccT 2027</div>
+    <h1>Walk Me Through Your Work</h1>
+    <p class="sub" style="font-size:18px;margin-top:8px">Explainability in LLMs Lies in the Auditability of Outputs</p>
+    <span class="project-status">Short public explainer · manuscript not hosted here during review</span>
+    <p class="one-line">The core idea: when someone has to rely on an LLM answer, the important question is not only <em>how the model produced it</em>, but whether the reasons in the public output actually support the claims it asks us to accept.</p>
+  </div>
+
+  <section aria-labelledby="problem-heading">
+    <h2 id="problem-heading">What problem is the paper trying to separate?</h2>
+    <div class="split">
+      <div class="callout">
+        <h3>How was the answer produced?</h3>
+        <p>Mechanistic interpretability and chain-of-thought faithfulness ask questions about the model as an actor: what internal process produced the answer, and whether a rationale reflects that process.</p>
+      </div>
+      <div class="callout">
+        <h3>Does the answer justify itself?</h3>
+        <p>For reliance, there is another question about the output as an action: are the stated premises, assumptions and intermediate steps enough to support the public conclusion?</p>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:22px">
+      <p>The paper argues that these are different explanatory targets. A rationale can faithfully mirror the process that produced an answer and still contain an inadmissible assumption, an unsupported step, or a conclusion that does not follow. Conversely, knowing more about hidden computation does not automatically give a user a public, contestable justification for the particular claim in front of them.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="audit-heading">
+    <h2 id="audit-heading">What does “auditable” mean here?</h2>
+    <div class="prose">
+      <p>The paper proposes a minimal semantic framework for replaying an output as a public record of reasons. It is deliberately about what a competent evaluator can recover from the writing; it is not a claim that every answer must be translated into formal logic.</p>
+    </div>
+    <div class="roles" aria-label="Statement roles">
+      <div class="role"><strong>Fact</strong><span>A premise anchored to the user input, a document, a tool result, or other external source.</span></div>
+      <div class="role"><strong>Assumption</strong><span>An explicit premise that can be accepted or challenged.</span></div>
+      <div class="role"><strong>Step</strong><span>A derived statement whose stated supports should entail it.</span></div>
+      <div class="role"><strong>Claim</strong><span>A user-facing commitment that should be anchored in valid prior work.</span></div>
+    </div>
+    <div class="prose" style="margin-top:22px">
+      <p>An audit walks through those statements in order, checks their role-specific obligations, and records where the first failure occurs. Some failures make the output non-auditable because its structure is too unclear to replay; others are useful precisely because the output is auditable enough to reveal the bad assumption, broken inference, missing anchor, or unsupported claim.</p>
+      <p><strong>Auditability is not correctness.</strong> An auditable answer can still be wrong. The point is that its load-bearing structure is visible enough for someone else to locate and contest the failure.</p>
+    </div>
+    <figure class="figure">
+      <img src="assets/audit-flow.webp" alt="Flowchart for auditing an LLM public output. After checking that the output has an auditable structure, each statement is classified as fact, assumption, step, or claim, checked according to its role, appended to a validation vector, and the earliest invalid point is localized if any check fails.">
+      <figcaption>The paper’s replay procedure. Each statement is checked according to its role; failures remain localizable when the surrounding output is structurally auditable.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="why-heading">
+    <h2 id="why-heading">Why I think the distinction matters</h2>
+    <div class="prose">
+      <p>In practice, users do not get access to activations or a mechanistic account every time they receive a recommendation, analysis, compliance answer, or plan. What they actually have to accept, reject, revise, cite, or act on is the public output.</p>
+      <p>That makes public reason-giving useful in its own right. If the assumptions are exposed, the evidence is anchored, and the inferential route can be replayed, a third party can challenge exactly what went wrong without needing privileged access to the model. The framework is intended as a semantic target for that kind of output; an implementation could be manual, automated, or hybrid.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="related-heading">
+    <h2 id="related-heading">Related work of mine</h2>
+    <div class="prose">
+      <p><a href="https://aclanthology.org/2026.findings-acl.1936/">TIME (Findings of ACL 2026)</a> asks a different question: when should a language model use explicit reasoning at all? <em>Walk Me Through Your Work</em> starts one step later and asks what public reasoning needs to provide if it is going to serve as a justification rather than simply as exposed text.</p>
+    </div>
+  </section>
+</main>
+<footer class="site-foot"><div class="shell foot-inner"><span>Susmit Das</span><span><a href="mailto:susmitdas@alum.iisc.ac.in">susmitdas@alum.iisc.ac.in</a></span></div></footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="Susmit Das — research on language-model reasoning, auditability, and trustworthy AI systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Susmit Das">
+  <meta property="og:description" content="Language-model research, trustworthy AI systems, and open-weight model tinkering.">
+  <title>Susmit Das</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="shell head-inner">
+    <a class="brand" href="index.html">Susmit Das</a>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#questions">Questions</a>
+      <a href="#about">About</a>
+      <a href="cv.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+<main class="shell">
+  <div class="hero">
+    <h1>Hi, I’m Susmit.</h1>
+    <p class="lede">I work on language models and trustworthy AI. My independent work usually starts from something that bothers me when I use or build these systems: why should explicit reasoning always be on, what makes an explanation actually useful, or what happens when scientific evidence depends on models nobody can preserve?</p>
+    <p class="sub">I’m a Privacy Research Scientist (AI). I trained in machine learning, deep learning and NLP at IISc, and I do independent research alongside my day job.</p>
+    <div class="links" aria-label="Profiles">
+      <a href="mailto:susmitdas@alum.iisc.ac.in">Email ↗</a>
+      <a href="https://scholar.google.com/citations?user=doy8b1UAAAAJ">Google Scholar ↗</a>
+      <a href="https://github.com/susmitds">GitHub ↗</a>
+      <a href="https://orcid.org/0000-0001-6837-1121">ORCID ↗</a>
+      <a href="https://openreview.net/profile?id=%7ESusmit_Das1">OpenReview ↗</a>
+      <a href="cv.pdf">CV ↗</a>
+    </div>
+  </div>
+
+  <section id="work" aria-labelledby="work-heading">
+    <h2 id="work-heading">Selected work</h2>
+    <div class="work-grid">
+      <article class="card feature">
+        <div class="kicker">Findings of ACL 2026 · Solo-authored</div>
+        <h3>TIME: Temporally Intelligent Meta-reasoning Engine for Context-Triggered Explicit Reasoning</h3>
+        <p>TIME treats explicit reasoning as a context-triggered control policy rather than a fixed thinking/no-thinking mode. I developed a four-phase alignment curriculum and TIMEBench, a diagnostic for reasoning under temporal and conversational change.</p>
+        <div class="links">
+          <a href="time.html">Short explainer ↗</a>
+          <a href="https://aclanthology.org/2026.findings-acl.1936/">Paper ↗</a>
+          <a href="https://github.com/The-Coherence-Initiative/TIME">Code &amp; data ↗</a>
+          <a href="https://github.com/The-Coherence-Initiative/TIMEBench">TIMEBench ↗</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">Under review at ICLR 2027 · Independent research</div>
+        <h3>Ephemeral Models, Durable Claims</h3>
+        <p>How much of the AI research record depends on closed models that researchers cannot preserve? I measured that dependence across 53,538 archival papers and traced the lifecycle state of the models carrying it.</p>
+        <div class="links"><a href="ephemeral-models.html">Short explainer ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">Position paper · 2026</div>
+        <h3>Walk Me Through Your Work</h3>
+        <p>What if explainability is less about looking inside a model and more about whether the reasons in its public answer can actually be checked? This paper develops an output-level notion of auditability for LLM reasoning.</p>
+        <div class="links"><a href="walk-me-through-your-work.html">Short explainer ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">IEEE ISoPE 2025 · First author · Industry research</div>
+        <h3>PERAI</h3>
+        <p>A privacy-by-design framework spanning risk assessment, privacy-enhancing methods, model evaluation, inference-time controls and agent governance, developed with colleagues at PrivaSapien.</p>
+        <div class="links"><a href="https://ieeexplore.ieee.org/document/11486340/">IEEE paper ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="questions" aria-labelledby="questions-heading">
+    <h2 id="questions-heading">Questions I keep coming back to</h2>
+    <div class="questions">
+      <div>
+        <h3>When should a model think explicitly?</h3>
+        <p>Reasoning is useful, but it is also expensive and often deployed as a global mode. I’m interested in models that can allocate explicit reasoning when context actually calls for it.</p>
+      </div>
+      <div>
+        <h3>When is an answer worth relying on?</h3>
+        <p>A rationale can be fluent, faithful, or mechanistically interesting and still fail to justify its conclusion. I’m interested in outputs whose assumptions, evidence and inferential steps can be inspected and challenged.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading">About</h2>
+    <div class="about">
+      <p>Professionally, I work on privacy-focused AI systems, including multi-agent assessment systems, document-grounded assistants, privacy threat modeling and privacy-preserving inference.</p>
+      <p>Outside work, I spend a lot of time running large open-weight models locally for fun, experimentation and my own coding agents. Keeping new releases working on an improvised multi-GPU home machine has turned into its own hobby: custom llama.cpp forks, architecture support, low-bit quantization ports, mixed-precision quantization and whatever small tool I end up needing next.</p>
+      <p class="note">I like taking research ideas end to end: formulate the question, build the experiment or system, run the analysis, break it, fix it, and write the paper.</p>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+    <div class="about"><p>If you want to talk about reasoning, trustworthy language models, open-weight systems, or research collaboration, email me at <a href="mailto:susmitdas@alum.iisc.ac.in">susmitdas@alum.iisc.ac.in</a>.</p></div>
+  </section>
+</main>
+<footer class="site-foot"><div class="shell foot-inner"><span>Susmit Das</span><span>Plain HTML/CSS · no trackers · no build step</span></div></footer>
+</body>
+</html>
