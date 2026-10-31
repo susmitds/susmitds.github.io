@@ -1,6 +1,6 @@
 # Susmit Das — personal research website
 
-A small static site designed for GitHub Pages. No build system, JavaScript framework, analytics, or external fonts.
+A small static site designed for GitHub Pages.
 
 ## Files
 
@@ -12,7 +12,3 @@ A small static site designed for GitHub Pages. No build system, JavaScript frame
 - `assets/audit-flow.webp` — WMTYW audit flow diagram
 - `cv.pdf` — current CV
 - `favicon.svg` — favicon
-
-## GitHub Pages
-
-Put these files in the root of `susmitds.github.io`, then enable GitHub Pages from the `main` branch / repository root.
