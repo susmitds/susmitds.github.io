@@ -1,93 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#faf9f6">
-  <meta name="description" content="A short explanation of Ephemeral Models, Durable Claims, an empirical study of closed-model dependence and preservation in AI research.">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Ephemeral Models, Durable Claims — Susmit Das">
-  <meta property="og:description" content="How much of the AI research record depends on computational artifacts that researchers cannot preserve?">
-  <title>Ephemeral Models, Durable Claims — Susmit Das</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header class="site-head">
-  <div class="shell head-inner">
-    <a class="brand" href="index.html">Susmit Das</a>
-    <nav aria-label="Main navigation"><a href="index.html#work">Work</a><a href="index.html#about">About</a><a href="cv.pdf">CV</a></nav>
-  </div>
-</header>
-<main class="shell">
-  <a class="back" href="index.html#work">← Back to selected work</a>
-  <div class="project-hero" style="margin-top:32px">
-    <div class="kicker">Empirical study · under review at ICLR 2027</div>
-    <h1>Ephemeral Models, Durable Claims</h1>
-    <p class="sub" style="font-size:18px;margin-top:8px">Closed-Model Dependence and the Preservation of AI Research</p>
-    <span class="project-status">Short public explainer · manuscript not linked during review</span>
-    <p class="one-line">The core question: what happens to the scientific record when an experiment depends on a model that the authors cannot archive, and the provider can later change, deprecate, or retire?</p>
-  </div>
-
-  <section aria-labelledby="problem-heading">
-    <h2 id="problem-heading">The preservation problem</h2>
-    <div class="split">
-      <div class="callout"><h3>A retainable model</h3><p>If the exact executable artifact can be kept locally, researchers can often preserve it alongside code, prompts, data, and evaluation scripts.</p></div>
-      <div class="callout"><h3>A provider-controlled model</h3><p>If access exists only through an API or product, researchers can record identifiers and inputs, but continued access to the computational artifact remains outside the scholarly archive.</p></div>
-    </div>
-    <div class="prose" style="margin-top:22px"><p>A replacement model can support a new experiment, but it cannot recreate the historical object that generated, judged, or served as a baseline for the original evidence.</p></div>
-  </section>
-
-  <section aria-labelledby="measure-heading">
-    <h2 id="measure-heading">What I measured</h2>
-    <div class="prose"><p>I built a frozen census of 53,538 final archival papers across ACL, EMNLP, ICLR, ICML, and NeurIPS from 2023–2026, then measured whether covered closed models appeared in four non-exclusive scientific roles. Writing, coding, translation, and similar assistance are tracked separately and do not count toward the primary measure.</p></div>
-    <div class="roles">
-      <div class="role"><strong>Direct</strong><span>The model is an experimental object, target, backbone, agent, or system being studied.</span></div>
-      <div class="role"><strong>Baseline</strong><span>Its result is part of the comparison used to motivate or interpret a claim.</span></div>
-      <div class="role"><strong>Judge</strong><span>The model scores, ranks, critiques, or otherwise evaluates another system’s output.</span></div>
-      <div class="role"><strong>Data generation</strong><span>The model generates, annotates, labels, or constructs experimental material.</span></div>
-    </div>
-  </section>
-
-  <section aria-labelledby="pipeline-heading">
-    <h2 id="pipeline-heading">How the measurement works</h2>
-    <div class="prose"><p>The pipeline was designed to keep high-recall retrieval, deterministic evidence rules, semantic adjudication, validation, and lifecycle curation separate. Only unresolved entities are sent to a locally served LLM adjudicator; deterministic decisions cannot be overwritten by it.</p></div>
-    <div class="flow" aria-label="Measurement pipeline">
-      <div class="flow-step"><strong>Archive census</strong>53,538 final papers</div>
-      <div class="flow-step"><strong>High-recall retrieval</strong>model mentions + identity resolution</div>
-      <div class="flow-step"><strong>Deterministic triage</strong>use / non-use / ambiguous</div>
-      <div class="flow-step"><strong>LLM adjudication</strong>ambiguous entities only</div>
-      <div class="flow-step"><strong>Freeze + validate</strong>blinded random sample</div>
-      <div class="flow-step"><strong>Lifecycle join</strong>first-party status evidence</div>
-    </div>
-    <div class="stat-grid">
-      <div class="stat"><strong>0.967</strong><span>end-to-end F1 for Scientific Use</span></div>
-      <div class="stat"><strong>0.888</strong><span>four-role micro-F1</span></div>
-      <div class="stat"><strong>200</strong><span>papers in the blinded validation sample</span></div>
-      <div class="stat"><strong>302</strong><span>implementation tests across the pipeline</span></div>
-    </div>
-  </section>
-
-  <section aria-labelledby="findings-heading">
-    <h2 id="findings-heading">What the census found</h2>
-    <div class="stat-grid">
-      <div class="stat"><strong>33.32%</strong><span>17,841 of 53,538 papers contain measured closed-model Scientific Use</span></div>
-      <div class="stat"><strong>15.0 → 38.0%</strong><span>Scientific Use in the common five-venue window, 2023 to 2025</span></div>
-      <div class="stat"><strong>1.47 → 11.50%</strong><span>closed-model Judge prevalence, 2023 to 2025</span></div>
-      <div class="stat"><strong>7 / 20</strong><span>most-used normalized models already retired by the 2026-09-24 cutoff</span></div>
-    </div>
-    <div class="prose" style="margin-top:22px"><p>The dependence is not confined to comparison tables. Closed models increasingly participate in data construction and evaluation, and model lifecycles can move faster than the archival record that cites them.</p></div>
-  </section>
-
-  <section aria-labelledby="claim-heading">
-    <h2 id="claim-heading">What the paper does and does not claim</h2>
-    <div class="prose">
-      <p>This is <strong>not</strong> a paper-level “irreproducibility rate.” It measures where recent archival research depends on computational artifacts whose identity or future availability is controlled outside the archive.</p>
-      <p>The paper distinguishes three preservation failures: <strong>drift</strong> when the reference still resolves but behavior changes, <strong>extinction</strong> when the model or snapshot is no longer callable, and <strong>underspecification</strong> when the paper never identifies one fixed served artifact in the first place.</p>
-      <p>The practical implication is fairly modest: when a locally retainable model can serve the same scientific role, preservation comes almost for free. When a closed model is necessary, exact identifiers, access dates, material settings, inputs/outputs, and post-commercial research access become part of preserving the evidence.</p>
-    </div>
-  </section>
-</main>
-<footer class="site-foot"><div class="shell foot-inner"><span>Susmit Das</span><span><a href="mailto:susmitdas@alum.iisc.ac.in">susmitdas@alum.iisc.ac.in</a></span></div></footer>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f4ed"><meta name="description" content="A short explanation of Ephemeral Models, Durable Claims, my study of closed-model dependence in archival AI research."><title>Ephemeral Models, Durable Claims | Susmit Das</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="styles.css"></head><body>
+<header class="site-head"><div class="shell head-inner"><a class="brand" href="index.html">Susmit Das</a><nav><a href="index.html#stuff">things</a><a href="index.html#story">about</a><a href="cv.pdf">cv</a></nav></div></header>
+<main class="shell"><a class="back" href="index.html#stuff">← back home</a><div class="project-hero"><div class="kicker">Under review at ICLR 2027</div><h1>Ephemeral Models,<br>Durable Claims</h1><span class="project-status">short public explainer · manuscript not hosted here during review</span><div class="links"><a href="https://openreview.net/forum?id=b4dstEWp9v">OpenReview ↗</a></div><p class="one-line">A paper can outlive the model it used. I wanted to know how often modern AI research already depends on closed computational artifacts that researchers themselves cannot preserve.</p></div>
+<section><h2>The thing that bothered me</h2><div class="split"><div class="callout"><h3>If you can keep the model</h3><p>A locally retainable model can usually live with the rest of the research artifacts: code, prompts, data, scripts, environment details, and so on.</p></div><div class="callout"><h3>If you cannot</h3><p>With a provider-controlled model, you can record what you used, but you still do not control whether that exact computational object exists later.</p></div></div></section>
+<section><h2>What I actually counted</h2><div class="prose"><p>I froze a census of 53,538 final archival papers from ACL, EMNLP, ICLR, ICML and NeurIPS from 2023 to 2026 where available, then measured whether covered closed models played one of four scientific roles. Writing help or coding assistance was tracked separately and excluded from the main measure.</p></div><div class="role-grid"><div class="role"><strong>Direct</strong><span>the model is part of the experimental system or object of study</span></div><div class="role"><strong>Baseline</strong><span>the model provides a comparison condition</span></div><div class="role"><strong>Judge</strong><span>the model scores or evaluates other systems</span></div><div class="role"><strong>Data generation</strong><span>the model creates or annotates study material</span></div></div></section>
+<section><h2>How I measured it</h2><div class="flow"><div class="flow-step"><strong>Archive census</strong>53,538 papers</div><div class="flow-step"><strong>High-recall retrieval</strong>find plausible model mentions</div><div class="flow-step"><strong>Deterministic triage</strong>resolve clear cases</div><div class="flow-step"><strong>LLM adjudication</strong>ambiguous entities only</div><div class="flow-step"><strong>Freeze + validate</strong>blind human sample</div><div class="flow-step"><strong>Lifecycle join</strong>first-party status evidence</div></div><div class="stat-grid" style="margin-top:18px"><div class="stat"><strong>0.967</strong><span>end-to-end F1 for Scientific Use</span></div><div class="stat"><strong>0.888</strong><span>four-role micro-F1</span></div><div class="stat"><strong>200</strong><span>papers in blinded validation</span></div><div class="stat"><strong>302</strong><span>implementation tests</span></div></div></section>
+<section><h2>What showed up</h2><div class="stat-grid"><div class="stat"><strong>33.32%</strong><span>17,841 of 53,538 papers had measured Scientific Use</span></div><div class="stat"><strong>15 → 38%</strong><span>common five-venue prevalence, 2023 to 2025</span></div><div class="stat"><strong>1.47 → 11.50%</strong><span>Judge prevalence, 2023 to 2025</span></div><div class="stat"><strong>7 / 20</strong><span>most-used normalized models already retired at cutoff</span></div></div><div class="result-line"><strong>This is not an irreproducibility rate.</strong> It is a map of where the research record depends on computational artifacts whose identity or future availability sits outside the scholarly archive.</div></section>
+<section><h2>Two trends that are easier to see as graphs</h2><div class="bar-panel"><div class="bar-card"><h3>Closed-model Scientific Use became common fast</h3><div class="bar-list"><div class="bar-row"><strong>2023</strong><div class="bar-track"><div class="bar-fill" style="width:39.5%"></div></div><span>15%</span></div><div class="bar-row"><strong>2025</strong><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span>38%</span></div></div><p class="tiny" style="margin-top:12px">Shown here for the common five-venue slice discussed in the paper.</p></div><div class="bar-card"><h3>The judge role grew especially quickly</h3><div class="bar-list"><div class="bar-row"><strong>2023</strong><div class="bar-track"><div class="bar-fill orange" style="width:12.8%"></div></div><span>1.47%</span></div><div class="bar-row"><strong>2025</strong><div class="bar-track"><div class="bar-fill orange" style="width:100%"></div></div><span>11.50%</span></div></div><p class="tiny" style="margin-top:12px">This was not just about models being used as systems. They were also being used to evaluate other systems.</p></div></div></section>
+<section><h2>Why I care</h2><div class="prose"><p>I dislike the idea that a durable scientific claim can outlive the very model behavior it depended on, with no way for a later researcher to interrogate the same artifact again. The practical fixes are not glamorous, but they matter: exact identifiers, preservation-minded model choices, archival traces, and some form of post-commercial research access for high-footprint models.</p></div></section>
+</main><footer class="site-foot"><div class="shell foot-inner"><span>Susmit Das</span><span><a href="mailto:susmitdas@alum.iisc.ac.in">susmitdas@alum.iisc.ac.in</a></span></div></footer></body></html>
